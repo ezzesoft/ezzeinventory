@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ezzeinventoryModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ezzesoftEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="AccountMasters" EntityType="ezzeinventoryModel.AccountMaster" />
+    <EntitySet Name="AccountTypes" EntityType="ezzeinventoryModel.AccountType" />
+    <EntitySet Name="Cities" EntityType="ezzeinventoryModel.City" />
+    <EntitySet Name="Companies" EntityType="ezzeinventoryModel.Company" />
+    <EntitySet Name="Countries" EntityType="ezzeinventoryModel.Country" />
+    <EntitySet Name="Departments" EntityType="ezzeinventoryModel.Department" />
+    <EntitySet Name="Districts" EntityType="ezzeinventoryModel.District" />
+    <EntitySet Name="Excises" EntityType="ezzeinventoryModel.Excise" />
+    <EntitySet Name="FinancialYears" EntityType="ezzeinventoryModel.FinancialYear" />
+    <EntitySet Name="Godowns" EntityType="ezzeinventoryModel.Godown" />
+    <EntitySet Name="HSNCodes" EntityType="ezzeinventoryModel.HSNCode" />
+    <EntitySet Name="Modules" EntityType="ezzeinventoryModel.Module" />
+    <EntitySet Name="PinCodes" EntityType="ezzeinventoryModel.PinCode" />
+    <EntitySet Name="States" EntityType="ezzeinventoryModel.State" />
+    <EntitySet Name="StoreItemTypes" EntityType="ezzeinventoryModel.StoreItemType" />
+    <EntitySet Name="StoreSections" EntityType="ezzeinventoryModel.StoreSection" />
+    <EntitySet Name="StoreSuppliers" EntityType="ezzeinventoryModel.StoreSupplier" />
+    <EntitySet Name="StoreSupplies" EntityType="ezzeinventoryModel.StoreSupply" />
+    <EntitySet Name="StoreUnitOfMeasurements" EntityType="ezzeinventoryModel.StoreUnitOfMeasurement" />
+    <EntitySet Name="TaxMasters" EntityType="ezzeinventoryModel.TaxMaster" />
+    <EntitySet Name="Users" EntityType="ezzeinventoryModel.User" />
+    <AssociationSet Name="FK_AccountMaster_AccountType" Association="ezzeinventoryModel.FK_AccountMaster_AccountType">
+      <End Role="AccountType" EntitySet="AccountTypes" />
+      <End Role="AccountMaster" EntitySet="AccountMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaxMaster_AccountMaster" Association="ezzeinventoryModel.FK_TaxMaster_AccountMaster">
+      <End Role="AccountMaster" EntitySet="AccountMasters" />
+      <End Role="TaxMaster" EntitySet="TaxMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaxMaster_AccountType" Association="ezzeinventoryModel.FK_TaxMaster_AccountType">
+      <End Role="AccountType" EntitySet="AccountTypes" />
+      <End Role="TaxMaster" EntitySet="TaxMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_District" Association="ezzeinventoryModel.FK_City_District">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_City" Association="ezzeinventoryModel.FK_PinCode_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="PinCode" EntitySet="PinCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_Country" Association="ezzeinventoryModel.FK_PinCode_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="PinCode" EntitySet="PinCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="ezzeinventoryModel.FK_State_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_District_State" Association="ezzeinventoryModel.FK_District_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="District" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_District" Association="ezzeinventoryModel.FK_PinCode_District">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="PinCode" EntitySet="PinCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Godown_FinancialYear" Association="ezzeinventoryModel.FK_Godown_FinancialYear">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="Godown" EntitySet="Godowns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_State" Association="ezzeinventoryModel.FK_PinCode_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="PinCode" EntitySet="PinCodes" />
+    </AssociationSet>
+    <EntitySet Name="TaxTypes" EntityType="ezzeinventoryModel.TaxType" />
+  </EntityContainer>
+  <EntityType Name="AccountMaster">
+    <Key>
+      <PropertyRef Name="AccountMasterCode" />
+    </Key>
+    <Property Name="AccountMasterCode" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="OpeningBalance" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="ProfitLossBalanceSheet" Type="Boolean" />
+    <Property Name="TallyName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Bank" Type="Boolean" />
+    <Property Name="HsnCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="TaxCode1" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="TaxCode2" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="TaxCode3" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="TaxPercentage1" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="TaxPercentage2" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="TaxPercentage3" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="TotalTaxPercentage" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="TaxDescription1" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="TaxDescription2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="TaxDescription3" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="AccountTypeId" Type="Int32" />
+    <Property Name="CompanyCode" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AccountType" Relationship="ezzeinventoryModel.FK_AccountMaster_AccountType" FromRole="AccountMaster" ToRole="AccountType" />
+    <NavigationProperty Name="TaxMasters" Relationship="ezzeinventoryModel.FK_TaxMaster_AccountMaster" FromRole="AccountMaster" ToRole="TaxMaster" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="AccountTypeId" />
+    </Key>
+    <Property Name="AccountTypeId" Type="Int32" Nullable="false" />
+    <Property Name="AccountTypeName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AccountMasters" Relationship="ezzeinventoryModel.FK_AccountMaster_AccountType" FromRole="AccountType" ToRole="AccountMaster" />
+    <NavigationProperty Name="TaxMasters" Relationship="ezzeinventoryModel.FK_TaxMaster_AccountType" FromRole="AccountType" ToRole="TaxMaster" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="District" Relationship="ezzeinventoryModel.FK_City_District" FromRole="City" ToRole="District" />
+    <NavigationProperty Name="PinCodes" Relationship="ezzeinventoryModel.FK_PinCode_City" FromRole="City" ToRole="PinCode" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyCode" />
+    </Key>
+    <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="Address3" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="PinCode" Type="String" Nullable="false" MaxLength="6" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNumber1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNumber2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNumber3" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="MobileNumber1" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="MobileNumber2" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="MobileNumber3" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="VatSalesTaxNo" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="FinancialYearFrom" Type="DateTime" Precision="3" />
+    <Property Name="FinancialYearTo" Type="DateTime" Precision="3" />
+    <Property Name="FinancialYearCurrent" Type="DateTime" Precision="3" />
+    <Property Name="Email1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email3" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Website1" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="Website2" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="GstIdentificationNumber" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+    <Property Name="BankName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="BankCode" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="BankAccountNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="BankAddress" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="CstNo" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="LogoLarge" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="LogoSmall" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DataPath" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ProductionSerialNumber" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProudctionKey" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="DataDrive" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Cin" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="BackupDirectory" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PinCodes" Relationship="ezzeinventoryModel.FK_PinCode_Country" FromRole="Country" ToRole="PinCode" />
+    <NavigationProperty Name="States" Relationship="ezzeinventoryModel.FK_State_Country" FromRole="Country" ToRole="State" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentCode" />
+    </Key>
+    <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="Printer" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="PrintKOT" Type="Boolean" />
+    <Property Name="CLR" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="OutletCode" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictId" />
+    </Key>
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="DistrictName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DateledDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Cities" Relationship="ezzeinventoryModel.FK_City_District" FromRole="District" ToRole="City" />
+    <NavigationProperty Name="State" Relationship="ezzeinventoryModel.FK_District_State" FromRole="District" ToRole="State" />
+    <NavigationProperty Name="PinCodes" Relationship="ezzeinventoryModel.FK_PinCode_District" FromRole="District" ToRole="PinCode" />
+  </EntityType>
+  <EntityType Name="Excise">
+    <Key>
+      <PropertyRef Name="ExciseId" />
+    </Key>
+    <Property Name="ExciseId" Type="Int32" Nullable="false" />
+    <Property Name="ExciseName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="TeriffNo" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="ExciseDuty" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Abatement" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FinancialYear">
+    <Key>
+      <PropertyRef Name="FinancialYearId" />
+    </Key>
+    <Property Name="FinancialYearId" Type="Int32" Nullable="false" />
+    <Property Name="FinancialYearName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Godowns" Relationship="ezzeinventoryModel.FK_Godown_FinancialYear" FromRole="FinancialYear" ToRole="Godown" />
+  </EntityType>
+  <EntityType Name="Godown">
+    <Key>
+      <PropertyRef Name="GodownCode" />
+    </Key>
+    <Property Name="GodownCode" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="GodownName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FinancialYearId" Type="Int32" />
+    <Property Name="Caption" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FinancialYear" Relationship="ezzeinventoryModel.FK_Godown_FinancialYear" FromRole="Godown" ToRole="FinancialYear" />
+  </EntityType>
+  <EntityType Name="HSNCode">
+    <Key>
+      <PropertyRef Name="HSNCodeId" />
+    </Key>
+    <Property Name="HSNCodeId" Type="Int32" Nullable="false" />
+    <Property Name="HSNCodeName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="ModuleCode" />
+    </Key>
+    <Property Name="ModuleCode" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PinCode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PinCode1" Type="String" Nullable="false" MaxLength="6" Unicode="true" FixedLength="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="StateName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="DistrictName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="isDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="City" Relationship="ezzeinventoryModel.FK_PinCode_City" FromRole="PinCode" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="ezzeinventoryModel.FK_PinCode_Country" FromRole="PinCode" ToRole="Country" />
+    <NavigationProperty Name="District" Relationship="ezzeinventoryModel.FK_PinCode_District" FromRole="PinCode" ToRole="District" />
+    <NavigationProperty Name="State" Relationship="ezzeinventoryModel.FK_PinCode_State" FromRole="PinCode" ToRole="State" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Country" Relationship="ezzeinventoryModel.FK_State_Country" FromRole="State" ToRole="Country" />
+    <NavigationProperty Name="Districts" Relationship="ezzeinventoryModel.FK_District_State" FromRole="State" ToRole="District" />
+    <NavigationProperty Name="PinCodes" Relationship="ezzeinventoryModel.FK_PinCode_State" FromRole="State" ToRole="PinCode" />
+  </EntityType>
+  <EntityType Name="StoreItemType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ItemTypeName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="StoreSection">
+    <Key>
+      <PropertyRef Name="SectionId" />
+    </Key>
+    <Property Name="SectionId" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="SectionName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="StoreSupplier">
+    <Key>
+      <PropertyRef Name="AccountCode" />
+    </Key>
+    <Property Name="AccountCode" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="AccountName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="YOB" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="Address1" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Address3" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Address4" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="CountryCode" Type="Int32" />
+    <Property Name="StateCode" Type="Int32" />
+    <Property Name="CityCode" Type="Int32" />
+    <Property Name="PinCodeId" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="ContactNumber1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ContactNumber2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ContactNumber3" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="MobileNumber1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="MobileNumber2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="MobileNumber3" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CreditDay" Type="Int32" />
+    <Property Name="Limit" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="AccountMasterCode" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="Term1" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Term2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Term3" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Term4" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="SupplyCode" Type="Int32" />
+    <Property Name="TinNumber1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="TinNumber2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="TaxMasterCode" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="TallyName" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="DocumentProofId1" Type="Int32" />
+    <Property Name="DocumentProofId2" Type="Int32" />
+    <Property Name="DocumentProofId3" Type="Int32" />
+    <Property Name="SupplierProofNumber1" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="SupplierProofNumber2" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="SupplierProofNumber3" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="SupplierProofCopy1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SupplierProofCopy2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SupplierProofCopy3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="StoreSupply">
+    <Key>
+      <PropertyRef Name="SupplyCode" />
+    </Key>
+    <Property Name="SupplyCode" Type="Int32" Nullable="false" />
+    <Property Name="SupplyName" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="StoreUnitOfMeasurement">
+    <Key>
+      <PropertyRef Name="UnitCode" />
+    </Key>
+    <Property Name="UnitCode" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="UnitName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TaxMaster">
+    <Key>
+      <PropertyRef Name="TaxCode" />
+    </Key>
+    <Property Name="TaxCode" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="TaxDescription" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="TaxPercentage" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="Type" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="IncludeInStockValuation" Type="Boolean" />
+    <Property Name="AccountTypeId" Type="Int32" />
+    <Property Name="AccountMasterCode" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AccountMaster" Relationship="ezzeinventoryModel.FK_TaxMaster_AccountMaster" FromRole="TaxMaster" ToRole="AccountMaster" />
+    <NavigationProperty Name="AccountType" Relationship="ezzeinventoryModel.FK_TaxMaster_AccountType" FromRole="TaxMaster" ToRole="AccountType" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="IsDefaultPassword" Type="Boolean" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+    <Property Name="Level" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="Module" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ActiveDays" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_AccountMaster_AccountType">
+    <End Role="AccountType" Type="ezzeinventoryModel.AccountType" Multiplicity="0..1" />
+    <End Role="AccountMaster" Type="ezzeinventoryModel.AccountMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="AccountTypeId" />
+      </Principal>
+      <Dependent Role="AccountMaster">
+        <PropertyRef Name="AccountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaxMaster_AccountMaster">
+    <End Role="AccountMaster" Type="ezzeinventoryModel.AccountMaster" Multiplicity="1" />
+    <End Role="TaxMaster" Type="ezzeinventoryModel.TaxMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountMaster">
+        <PropertyRef Name="AccountMasterCode" />
+      </Principal>
+      <Dependent Role="TaxMaster">
+        <PropertyRef Name="AccountMasterCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaxMaster_AccountType">
+    <End Role="AccountType" Type="ezzeinventoryModel.AccountType" Multiplicity="0..1" />
+    <End Role="TaxMaster" Type="ezzeinventoryModel.TaxMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="AccountTypeId" />
+      </Principal>
+      <Dependent Role="TaxMaster">
+        <PropertyRef Name="AccountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_District">
+    <End Role="District" Type="ezzeinventoryModel.District" Multiplicity="1" />
+    <End Role="City" Type="ezzeinventoryModel.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictId" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_City">
+    <End Role="City" Type="ezzeinventoryModel.City" Multiplicity="1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_Country">
+    <End Role="Country" Type="ezzeinventoryModel.Country" Multiplicity="1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Role="Country" Type="ezzeinventoryModel.Country" Multiplicity="1" />
+    <End Role="State" Type="ezzeinventoryModel.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_District_State">
+    <End Role="State" Type="ezzeinventoryModel.State" Multiplicity="1" />
+    <End Role="District" Type="ezzeinventoryModel.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_District">
+    <End Role="District" Type="ezzeinventoryModel.District" Multiplicity="1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Godown_FinancialYear">
+    <End Role="FinancialYear" Type="ezzeinventoryModel.FinancialYear" Multiplicity="0..1" />
+    <End Role="Godown" Type="ezzeinventoryModel.Godown" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearId" />
+      </Principal>
+      <Dependent Role="Godown">
+        <PropertyRef Name="FinancialYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_State">
+    <End Role="State" Type="ezzeinventoryModel.State" Multiplicity="0..1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TaxType">
+    <Key>
+      <PropertyRef Name="TaxTypeCode" />
+    </Key>
+    <Property Type="String" Name="TaxTypeCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TaxTypeName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="String" Name="CreatedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedDate" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <Property Type="String" Name="DeletedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DeletedDate" Precision="3" />
+  </EntityType>
+</Schema>

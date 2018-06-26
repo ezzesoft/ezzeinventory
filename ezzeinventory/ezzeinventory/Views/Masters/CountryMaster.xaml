@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="ezzeinventory.Views.Masters.CountryMaster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:local="clr-namespace:ezzeinventory.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+    <Grid Background="#FFE8EEF0" Margin="20">
+        <Canvas> 
+            <Label Content="Country Name" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="110" Canvas.Top="43"/>
+            <TextBox Name="txtCountryName" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" MaxLength="30" TabIndex="1" VerticalAlignment="Center" Width="120" Canvas.Left="236" Canvas.Top="39"/>
+            <Button Content="Save" Name="btnSave" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Height="41" Canvas.Left="255" Canvas.Top="87" Click="btnSave_Click"/>
+
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="150" Width="300" Name="Dtgrid1"
+                     SelectionMode="Single" Canvas.Left="98" Canvas.Top="185" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CountryId}" Header="ID" x:Name="CountryId" IsReadOnly="True" Width="Auto"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CountryName}" Header="Name" x:Name="CountryName" Width="Auto"></DataGridTextColumn>
+                    
+                    <DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <Button Content="Edit" Name="btnEdit" Click="btnEdit_Click" CommandParameter="{Binding CountryId}"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <Button Content="Delete" Name="btnDelete" Click="btnDelete_Click" ></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Canvas>
+    </Grid>
+</UserControl>
+

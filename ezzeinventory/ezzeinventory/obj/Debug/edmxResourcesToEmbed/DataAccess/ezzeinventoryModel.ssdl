@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ezzeinventoryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ezzeinventoryModelStoreContainer">
+    <EntitySet Name="AccountMaster" EntityType="ezzeinventoryModel.Store.AccountMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountType" EntityType="ezzeinventoryModel.Store.AccountType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="City" EntityType="ezzeinventoryModel.Store.City" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Company" EntityType="ezzeinventoryModel.Store.Company" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Country" EntityType="ezzeinventoryModel.Store.Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Department" EntityType="ezzeinventoryModel.Store.Department" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="District" EntityType="ezzeinventoryModel.Store.District" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Excise" EntityType="ezzeinventoryModel.Store.Excise" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FinancialYear" EntityType="ezzeinventoryModel.Store.FinancialYear" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Godown" EntityType="ezzeinventoryModel.Store.Godown" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HSNCode" EntityType="ezzeinventoryModel.Store.HSNCode" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Module" EntityType="ezzeinventoryModel.Store.Module" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PinCode" EntityType="ezzeinventoryModel.Store.PinCode" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="State" EntityType="ezzeinventoryModel.Store.State" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StoreItemType" EntityType="ezzeinventoryModel.Store.StoreItemType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StoreSection" EntityType="ezzeinventoryModel.Store.StoreSection" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StoreSupplier" EntityType="ezzeinventoryModel.Store.StoreSupplier" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StoreSupply" EntityType="ezzeinventoryModel.Store.StoreSupply" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StoreUnitOfMeasurement" EntityType="ezzeinventoryModel.Store.StoreUnitOfMeasurement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaxMaster" EntityType="ezzeinventoryModel.Store.TaxMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaxType" EntityType="ezzeinventoryModel.Store.TaxType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="ezzeinventoryModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AccountMaster_AccountType" Association="ezzeinventoryModel.Store.FK_AccountMaster_AccountType">
+      <End Role="AccountType" EntitySet="AccountType" />
+      <End Role="AccountMaster" EntitySet="AccountMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_District" Association="ezzeinventoryModel.Store.FK_City_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_District_State" Association="ezzeinventoryModel.Store.FK_District_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="District" EntitySet="District" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Godown_FinancialYear" Association="ezzeinventoryModel.Store.FK_Godown_FinancialYear">
+      <End Role="FinancialYear" EntitySet="FinancialYear" />
+      <End Role="Godown" EntitySet="Godown" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_City" Association="ezzeinventoryModel.Store.FK_PinCode_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="PinCode" EntitySet="PinCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_Country" Association="ezzeinventoryModel.Store.FK_PinCode_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="PinCode" EntitySet="PinCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_District" Association="ezzeinventoryModel.Store.FK_PinCode_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="PinCode" EntitySet="PinCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinCode_State" Association="ezzeinventoryModel.Store.FK_PinCode_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="PinCode" EntitySet="PinCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="ezzeinventoryModel.Store.FK_State_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="State" EntitySet="State" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaxMaster_AccountMaster" Association="ezzeinventoryModel.Store.FK_TaxMaster_AccountMaster">
+      <End Role="AccountMaster" EntitySet="AccountMaster" />
+      <End Role="TaxMaster" EntitySet="TaxMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaxMaster_AccountType" Association="ezzeinventoryModel.Store.FK_TaxMaster_AccountType">
+      <End Role="AccountType" EntitySet="AccountType" />
+      <End Role="TaxMaster" EntitySet="TaxMaster" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AccountMaster">
+    <Key>
+      <PropertyRef Name="AccountMasterCode" />
+    </Key>
+    <Property Name="AccountMasterCode" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="OpeningBalance" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="ProfitLossBalanceSheet" Type="bit" />
+    <Property Name="TallyName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Bank" Type="bit" />
+    <Property Name="HsnCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="TaxCode1" Type="nvarchar" MaxLength="4" />
+    <Property Name="TaxCode2" Type="nvarchar" MaxLength="4" />
+    <Property Name="TaxCode3" Type="nvarchar" MaxLength="4" />
+    <Property Name="TaxPercentage1" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="TaxPercentage2" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="TaxPercentage3" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="TotalTaxPercentage" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="TaxDescription1" Type="nvarchar" MaxLength="200" />
+    <Property Name="TaxDescription2" Type="nvarchar" MaxLength="200" />
+    <Property Name="TaxDescription3" Type="nvarchar" MaxLength="200" />
+    <Property Name="AccountTypeId" Type="int" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="5" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="200" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="AccountTypeId" />
+    </Key>
+    <Property Name="AccountTypeId" Type="int" Nullable="false" />
+    <Property Name="AccountTypeName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyCode" />
+    </Key>
+    <Property Name="CompanyCode" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="CompanyName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="300" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="300" />
+    <Property Name="Address3" Type="nvarchar" MaxLength="300" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="PinCode" Type="nvarchar" Nullable="false" MaxLength="6" />
+    <Property Name="PhoneNumber1" Type="nvarchar" MaxLength="20" />
+    <Property Name="PhoneNumber2" Type="nvarchar" MaxLength="20" />
+    <Property Name="PhoneNumber3" Type="nvarchar" MaxLength="20" />
+    <Property Name="MobileNumber1" Type="nvarchar" MaxLength="10" />
+    <Property Name="MobileNumber2" Type="nvarchar" MaxLength="10" />
+    <Property Name="MobileNumber3" Type="nvarchar" MaxLength="10" />
+    <Property Name="VatSalesTaxNo" Type="nvarchar" MaxLength="30" />
+    <Property Name="FinancialYearFrom" Type="datetime" />
+    <Property Name="FinancialYearTo" Type="datetime" />
+    <Property Name="FinancialYearCurrent" Type="datetime" />
+    <Property Name="Email1" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email2" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email3" Type="nvarchar" MaxLength="20" />
+    <Property Name="Website1" Type="nvarchar" MaxLength="30" />
+    <Property Name="Website2" Type="nvarchar" MaxLength="30" />
+    <Property Name="GstIdentificationNumber" Type="nvarchar" MaxLength="40" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="100" />
+    <Property Name="BankCode" Type="nvarchar" MaxLength="15" />
+    <Property Name="BankAccountNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="BankAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="CstNo" Type="nvarchar" MaxLength="30" />
+    <Property Name="LogoLarge" Type="nvarchar(max)" />
+    <Property Name="LogoSmall" Type="nvarchar(max)" />
+    <Property Name="DataPath" Type="nvarchar(max)" />
+    <Property Name="ProductionSerialNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="ProudctionKey" Type="nvarchar" MaxLength="100" />
+    <Property Name="DataDrive" Type="nvarchar" MaxLength="20" />
+    <Property Name="Cin" Type="nvarchar" MaxLength="25" />
+    <Property Name="BackupDirectory" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentCode" />
+    </Key>
+    <Property Name="DepartmentCode" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="DepartmentName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CompanyCode" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="Printer" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="PrintKOT" Type="bit" />
+    <Property Name="CLR" Type="nvarchar" MaxLength="50" />
+    <Property Name="OutletCode" Type="nvarchar" MaxLength="4" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictId" />
+    </Key>
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="DistrictName" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DateledDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Excise">
+    <Key>
+      <PropertyRef Name="ExciseId" />
+    </Key>
+    <Property Name="ExciseId" Type="int" Nullable="false" />
+    <Property Name="ExciseName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="TeriffNo" Type="varchar" MaxLength="150" />
+    <Property Name="ExciseDuty" Type="varchar" MaxLength="150" />
+    <Property Name="Abatement" Type="decimal" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FinancialYear">
+    <Key>
+      <PropertyRef Name="FinancialYearId" />
+    </Key>
+    <Property Name="FinancialYearId" Type="int" Nullable="false" />
+    <Property Name="FinancialYearName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Godown">
+    <Key>
+      <PropertyRef Name="GodownCode" />
+    </Key>
+    <Property Name="GodownCode" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="GodownName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="FinancialYearId" Type="int" />
+    <Property Name="Caption" Type="varchar" MaxLength="10" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HSNCode">
+    <Key>
+      <PropertyRef Name="HSNCodeId" />
+    </Key>
+    <Property Name="HSNCodeId" Type="int" Nullable="false" />
+    <Property Name="HSNCodeName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="ModuleCode" />
+    </Key>
+    <Property Name="ModuleCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="ModuleName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PinCode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PinCode" Type="nvarchar" Nullable="false" MaxLength="6" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="DistrictName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="isDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StoreItemType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ItemTypeName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StoreSection">
+    <Key>
+      <PropertyRef Name="SectionId" />
+    </Key>
+    <Property Name="SectionId" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="SectionName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StoreSupplier">
+    <Key>
+      <PropertyRef Name="AccountCode" />
+    </Key>
+    <Property Name="AccountCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="AccountName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="YOB" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address3" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address4" Type="nvarchar" MaxLength="200" />
+    <Property Name="CountryCode" Type="int" />
+    <Property Name="StateCode" Type="int" />
+    <Property Name="CityCode" Type="int" />
+    <Property Name="PinCodeId" Type="nchar" MaxLength="10" />
+    <Property Name="ContactNumber1" Type="nvarchar" MaxLength="20" />
+    <Property Name="ContactNumber2" Type="nvarchar" MaxLength="20" />
+    <Property Name="ContactNumber3" Type="nvarchar" MaxLength="20" />
+    <Property Name="MobileNumber1" Type="nvarchar" MaxLength="20" />
+    <Property Name="MobileNumber2" Type="nvarchar" MaxLength="20" />
+    <Property Name="MobileNumber3" Type="nvarchar" MaxLength="20" />
+    <Property Name="CreditDay" Type="int" />
+    <Property Name="Limit" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="AccountMasterCode" Type="nvarchar" MaxLength="4" />
+    <Property Name="Term1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Term2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Term3" Type="nvarchar" MaxLength="200" />
+    <Property Name="Term4" Type="nvarchar" MaxLength="200" />
+    <Property Name="SupplyCode" Type="int" />
+    <Property Name="TinNumber1" Type="nvarchar" MaxLength="20" />
+    <Property Name="TinNumber2" Type="nvarchar" MaxLength="20" />
+    <Property Name="TaxMasterCode" Type="nvarchar" MaxLength="4" />
+    <Property Name="TallyName" Type="nvarchar" MaxLength="200" />
+    <Property Name="DocumentProofId1" Type="int" />
+    <Property Name="DocumentProofId2" Type="int" />
+    <Property Name="DocumentProofId3" Type="int" />
+    <Property Name="SupplierProofNumber1" Type="nvarchar" MaxLength="30" />
+    <Property Name="SupplierProofNumber2" Type="nvarchar" MaxLength="30" />
+    <Property Name="SupplierProofNumber3" Type="nvarchar" MaxLength="30" />
+    <Property Name="SupplierProofCopy1" Type="nvarchar(max)" />
+    <Property Name="SupplierProofCopy2" Type="nvarchar(max)" />
+    <Property Name="SupplierProofCopy3" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StoreSupply">
+    <Key>
+      <PropertyRef Name="SupplyCode" />
+    </Key>
+    <Property Name="SupplyCode" Type="int" Nullable="false" />
+    <Property Name="SupplyName" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StoreUnitOfMeasurement">
+    <Key>
+      <PropertyRef Name="UnitCode" />
+    </Key>
+    <Property Name="UnitCode" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="UnitName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TaxMaster">
+    <Key>
+      <PropertyRef Name="TaxCode" />
+    </Key>
+    <Property Name="TaxCode" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="TaxDescription" Type="nvarchar" MaxLength="200" />
+    <Property Name="TaxPercentage" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="Type" Type="nvarchar" MaxLength="5" />
+    <Property Name="IncludeInStockValuation" Type="bit" />
+    <Property Name="AccountTypeId" Type="int" />
+    <Property Name="AccountMasterCode" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TaxType">
+    <Key>
+      <PropertyRef Name="TaxTypeCode" />
+    </Key>
+    <Property Name="TaxTypeCode" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="TaxTypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="IsDefaultPassword" Type="bit" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="6" />
+    <Property Name="Level" Type="nvarchar" MaxLength="4" />
+    <Property Name="Module" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActiveDays" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DeletedBy" Type="nvarchar(max)" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_AccountMaster_AccountType">
+    <End Role="AccountType" Type="ezzeinventoryModel.Store.AccountType" Multiplicity="0..1" />
+    <End Role="AccountMaster" Type="ezzeinventoryModel.Store.AccountMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="AccountTypeId" />
+      </Principal>
+      <Dependent Role="AccountMaster">
+        <PropertyRef Name="AccountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_District">
+    <End Role="District" Type="ezzeinventoryModel.Store.District" Multiplicity="1" />
+    <End Role="City" Type="ezzeinventoryModel.Store.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictId" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_District_State">
+    <End Role="State" Type="ezzeinventoryModel.Store.State" Multiplicity="1" />
+    <End Role="District" Type="ezzeinventoryModel.Store.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Godown_FinancialYear">
+    <End Role="FinancialYear" Type="ezzeinventoryModel.Store.FinancialYear" Multiplicity="0..1" />
+    <End Role="Godown" Type="ezzeinventoryModel.Store.Godown" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearId" />
+      </Principal>
+      <Dependent Role="Godown">
+        <PropertyRef Name="FinancialYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_City">
+    <End Role="City" Type="ezzeinventoryModel.Store.City" Multiplicity="1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.Store.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_Country">
+    <End Role="Country" Type="ezzeinventoryModel.Store.Country" Multiplicity="1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.Store.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_District">
+    <End Role="District" Type="ezzeinventoryModel.Store.District" Multiplicity="1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.Store.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinCode_State">
+    <End Role="State" Type="ezzeinventoryModel.Store.State" Multiplicity="0..1" />
+    <End Role="PinCode" Type="ezzeinventoryModel.Store.PinCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="PinCode">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Role="Country" Type="ezzeinventoryModel.Store.Country" Multiplicity="1" />
+    <End Role="State" Type="ezzeinventoryModel.Store.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaxMaster_AccountMaster">
+    <End Role="AccountMaster" Type="ezzeinventoryModel.Store.AccountMaster" Multiplicity="1" />
+    <End Role="TaxMaster" Type="ezzeinventoryModel.Store.TaxMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountMaster">
+        <PropertyRef Name="AccountMasterCode" />
+      </Principal>
+      <Dependent Role="TaxMaster">
+        <PropertyRef Name="AccountMasterCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaxMaster_AccountType">
+    <End Role="AccountType" Type="ezzeinventoryModel.Store.AccountType" Multiplicity="0..1" />
+    <End Role="TaxMaster" Type="ezzeinventoryModel.Store.TaxMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="AccountTypeId" />
+      </Principal>
+      <Dependent Role="TaxMaster">
+        <PropertyRef Name="AccountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'ezzeinventory.dbo.DayOpenClose' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="DayOpenClose">
+        <Property Name="Date" Type="datetime" />
+        <Property Name="OpenClose" Type="bit" />
+        <Property Name="UpdatedBy" Type="nvarchar(max)" />
+      </EntityType>-->
+</Schema>
