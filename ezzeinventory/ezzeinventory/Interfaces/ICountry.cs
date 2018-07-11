@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ezzeinventory.DataAccess;
+using ezzeinventory.Models;
 
 namespace ezzeinventory.Interfaces
 {
@@ -13,31 +13,31 @@ namespace ezzeinventory.Interfaces
 
         #region Insert
 
-        bool Insert(Country _country);
+        bool Insert(CountryModel _country);
 
         #endregion
 
         #region Update
-        
-        bool Update(Country _country);
+
+        bool Update(CountryModel _country);
 
         #endregion
 
         #region Delete
 
-        bool Delete(Country _country);
+        bool Delete(CountryModel _country);
 
         #endregion
 
         #region GetAll
 
-        IEnumerable<Country> GetAll();
+        IEnumerable<CountryModel> GetAll();
         
         #endregion
 
         #region GetById
 
-        Country GetById(int Id);
+        CountryModel GetById(CountryModel _country);
 
         #endregion
         
